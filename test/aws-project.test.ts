@@ -1,17 +1,19 @@
-// import * as cdk from 'aws-cdk-lib';
-// import { Template } from 'aws-cdk-lib/assertions';
-// import * as AwsProject from '../lib/aws-project-stack';
+import * as cdk from 'aws-cdk-lib';
+import { Template } from 'aws-cdk-lib/assertions';
+import * as aws-project from '../lib/aws-project-stack';
+import app from '../source/app';
+import {request} from "node:http";
 
-// example test. To run these tests, uncomment this file along with the
-// example resource in lib/aws-project-stack.ts
-test('SQS Queue Created', () => {
-//   const app = new cdk.App();
-//     // WHEN
-//   const stack = new AwsProject.AwsProjectStack(app, 'MyTestStack');
-//     // THEN
-//   const template = Template.fromStack(stack);
+describe('File Upload API', () => {
+    it('should upload a file and store metadata in DynamoDB', async () => {
+        const filePath = '__tests__/testFile.jpg'; // Path to a test file
 
-//   template.hasResourceProperties('AWS::SQS::Queue', {
-//     VisibilityTimeout: 300
-//   });
+        const response = await request(app)
+            .post('/api/upload')
+            .attach('file', filePath);
+
+        expect(response.status).toBe(201);
+        expect(response.body).toHaveProperty('fileSize');
+        expect(response.body).toHaveProperty('fileExtension');
+    });
 });
