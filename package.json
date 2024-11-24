@@ -1,8 +1,8 @@
 {
-  "name": "aws-project",
+  "name": "myprojecttry",
   "version": "0.1.0",
   "bin": {
-    "aws-project": "bin/aws-project.js"
+    "myprojecttry": "bin/myprojecttry.js"
   },
   "scripts": {
     "build": "tsc",
@@ -13,14 +13,19 @@
   "devDependencies": {
     "@types/jest": "^29.5.14",
     "@types/node": "22.7.9",
+    "aws-cdk": "2.169.0",
     "jest": "^29.7.0",
     "ts-jest": "^29.2.5",
-    "aws-cdk": "2.169.0",
     "ts-node": "^10.9.2",
     "typescript": "~5.6.3"
   },
   "dependencies": {
+    "@aws-cdk/aws-codestar-alpha": "^2.169.0-alpha.0",
+    "@aws-sdk/client-dynamodb": "^3.696.0",
+    "@aws-sdk/client-sns": "^3.696.0",
     "aws-cdk-lib": "2.169.0",
-    "constructs": "^10.0.0"
+    "constructs": "^10.0.0",
+    "esbuild": "^0.24.0",
+    "myprojecttry": "file:"
   }
 }
